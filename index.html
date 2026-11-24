@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pavalendran Dishanthan | Portfolio</title>
+    <meta name="description"
+        content="Computer Engineering undergraduate at the University of Sri Jayewardenepura, building polished full-stack web apps, AI tools and IoT systems.">
+    <style>
+        :root {
+            --bg: #0b1220;
+            --card: #121a2c;
+            --text: #e6ebf5;
+            --muted: #9aa7bf;
+            --line: #223049;
+            --accent: #4f8cff;
+            --accent2: #22d3b6
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f6f8fc;
+            --card: #fff;
+            --text: #14213d;
+            --muted: #5b6b86;
+            --line: #dde4f0;
+            --accent: #1f5fe0;
+            --accent2: #0e9f8a
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none
+        }
+
+        .wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        section {
+            padding: 70px 0 10px
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 6px
+        }
+
+        .sub {
+            color: var(--muted);
+            margin-bottom: 28px
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: color-mix(in srgb, var(--bg) 85%, transparent);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 58px
+        }
+
+        nav b {
+            font-size: 1.05rem
+        }
+
+        nav .links {
+            display: flex;
+            gap: 20px;
+            align-items: center
+        }
+
+        nav .links a {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        nav .links a:hover {
+            color: var(--text)
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer
+        }
+
+        #theme {
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 4px 10px
+        }
+
+        .hero {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 60px
+        }
+
+        .hero .txt {
+            flex: 1 1 380px
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .badge {
+            display: inline-block;
+            margin: 14px 0;
+            padding: 4px 12px;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 520px
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 22px 0
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            font-weight: 600
+        }
+
+        .btn.fill {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .social a {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 5px 12px;
+            color: var(--text);
+            font-size: .9rem
+        }
+
+        .social a:hover {
+            border-color: var(--accent)
+        }
+
+        .photo {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff
+        }
+
+        .photo img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .chip {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-size: .88rem
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1rem
+        }
+
+        .card ul {
+            padding-left: 18px;
+            color: var(--muted)
+        }
+
+        .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent2)
+        }
+
+        .tl {
+            border-left: 2px solid var(--line);
+            margin-left: 8px
+        }
+
+        .tl div {
+            position: relative;
+            padding: 0 0 22px 22px
+        }
+
+        .tl div::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent)
+        }
+
+        .tl small {
+            color: var(--accent2);
+            font-weight: 600
+        }
+
+        .tl h4 {
+            margin: 2px 0
+        }
+
+        .tl p {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .proj {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .proj .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            font-size: .78rem;
+            padding: 2px 10px;
+            border-radius: 99px;
+            background: color-mix(in srgb, var(--accent) 18%, transparent);
+            color: var(--accent)
+        }
+
+        .tag.live {
+            background: color-mix(in srgb, var(--accent2) 20%, transparent);
+            color: var(--accent2)
+        }
+
+        .proj p {
+            color: var(--muted);
+            font-size: .95rem;
+            flex: 1
+        }
+
+        .proj .stack {
+            font-size: .82rem;
+            color: var(--muted)
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+            max-width: 560px
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--text);
+            font: inherit
+        }
+
+        footer {
+            margin-top: 70px;
+            border-top: 1px solid var(--line);
+            padding: 24px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        @media(max-width:640px) {
+            nav .links a.h {
+                display: none
+            }
+
+            .photo {
+                width: 200px;
+                height: 200px
+            }
+        }
+
+        #bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            z-index: 20
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(600px 400px at 85% 8%, color-mix(in srgb, var(--accent) 22%, transparent), transparent), radial-gradient(500px 400px at 5% 60%, color-mix(in srgb, var(--accent2) 14%, transparent), transparent)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .card {
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 25%, transparent)
+        }
+
+        .photo {
+            width: 280px;
+            height: 280px;
+            border: none;
+            padding: 5px;
+            background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent));
+            animation: spin 8s linear infinite
+        }
+
+        .photo img {
+            inset: 5px;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            border-radius: 50%;
+            animation: spin 8s linear infinite reverse
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .typed {
+            margin: 14px 0 4px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent2);
+            min-height: 1.7em
+        }
+
+        .cur {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: var(--accent2);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s steps(1) infinite
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0
+            }
+        }
+
+        .marquee {
+            overflow: hidden;
+            margin-bottom: 26px;
+            border-block: 1px solid var(--line);
+            padding: 12px 0;
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)
+        }
+
+        .track {
+            display: flex;
+            gap: 14px;
+            width: max-content;
+            animation: scroll 35s linear infinite
+        }
+
+        .track span {
+            padding: 6px 16px;
+            border-radius: 99px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            white-space: nowrap;
+            font-size: .9rem
+        }
+
+        .marquee:hover .track {
+            animation-play-state: paused
+        }
+
+        @keyframes scroll {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .skill {
+            position: relative;
+            overflow: hidden
+        }
+
+        .skill::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2))
+        }
+
+        .skill .ico {
+            font-size: 1.9rem;
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            background: color-mix(in srgb, var(--accent) 15%, transparent)
+        }
+
+        .skill .chip {
+            transition: all .2s
+        }
+
+        .skill .chip:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px)
+        }
+
+        .btn {
+            transition: transform .2s, box-shadow .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 35%, transparent)
+        }
+
+        @media(max-width:640px) {
+            .photo {
+                width: 220px;
+                height: 220px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bar"></div>
+    <header>
+        <div class="wrap">
+            <nav>
+                <b>P. Dishanthan</b>
+                <div class="links">
+                    <a class="h" href="#home">Home</a><a class="h" href="#journey">Journey</a><a class="h"
+                        href="#projects">Projects</a><a class="h" href="#skills">Skills</a><a class="h"
+                        href="#contact">Contact</a>
+                    <button id="theme" aria-label="Toggle theme">Theme</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section id="home" class="hero" style="padding-top:60px">
+            <div class="txt">
+                <h1>Hi, I’m <span>Pavalendran Dishanthan</span></h1>
+                <div class="badge">Full-Stack Developer · Computer Engineering Undergraduate · University of Sri
+                    Jayewardenepura</div>
+                <div class="typed">I build <span id="typed"></span><i class="cur"></i></div>
+                <p>Full-stack development is my focus. I build end-to-end web applications with React, Next.js, Node.js
+                    and FastAPI, from responsive frontends to databases and APIs, and I am looking for a full-stack
+                    internship.</p>
+                <div class="btns">
+                    <a class="btn fill" href="Dishanthan_CV.pdf" target="_blank" rel="noopener">View CV</a>
+                    <a class="btn" href="Dishanthan_CV.pdf" download>Download CV</a>
+                </div>
+                <div class="social">
+                    <a href="https://github.com/PavalendranDishanthan" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/pavalendran-dishanthan-a107a5363" target="_blank"
+                        rel="noopener">LinkedIn</a>
+                    <a href="mailto:dishanthanpavalendran@gmail.com">Email</a>
+                </div>
+            </div>
+            <div class="photo">PD<img src="profile.jpg" alt="Pavalendran Dishanthan" onerror="this.remove()"></div>
+        </section>
+
+        <section id="about">
+            <h2>What I do</h2>
+            <p class="sub">The kind of work I enjoy most.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>Responsive, animated frontends</li>
+                        <li>Full-stack apps with Next.js and React</li>
+                        <li>Portfolio websites and admin dashboards</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>AI &amp; Voice Apps</h3>
+                    <ul>
+                        <li>Speech-to-text and OCR features</li>
+                        <li>Gemini API assistants</li>
+                        <li>English and Tamil voice input</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Currently</h3>
+                    <p class="sub" style="margin:0">Current GPA</p>
+                    <div class="stat">3.253 / 4.00</div>
+                    <p class="sub" style="margin:8px 0 0">Building now: <a href="#projects">Tourist Arrivals Forecasting
+                            System</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey">
+            <h2>My journey</h2>
+            <p class="sub">Learning by building.</p>
+            <div class="tl">
+                <div><small>2014</small>
+                    <h4>School begins</h4>
+                    <p>Started at J/St. Henry’s College, Ilavalai, Jaffna.</p>
+                </div>
+                <div><small>2018 – 2023</small>
+                    <h4>Prefect</h4>
+                    <p>Served as a school prefect for five years.</p>
+                </div>
+                <div><small>2021 – 2022</small>
+                    <h4>Student Union President</h4>
+                    <p>Led the student union and represented fellow students.</p>
+                </div>
+                <div><small>2023</small>
+                    <h4>Advanced Level completed</h4>
+                    <p>Physical Science stream with 2A 1B and a Z-score of 1.78.</p>
+                </div>
+                <div><small>Mar 2024</small>
+                    <h4>Started Engineering</h4>
+                    <p>Began my BSc Engineering Honours studies at the University of Sri Jayewardenepura.</p>
+                </div>
+                <div><small>Apr 2025</small>
+                    <h4>Started Computer Engineering</h4>
+                    <p>Began my Computer Engineering studies and started building real software projects.</p>
+                </div>
+                <div><small>Now</small>
+                    <h4>Building real projects</h4>
+                    <p>Working on full-stack, AI and IoT projects while growing my frontend skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>My work</h2>
+            <p class="sub">Projects I have built.</p>
+            <div class="grid" id="projGrid"></div>
+            <p style="margin-top:20px"><a href="https://github.com/PavalendranDishanthan?tab=repositories"
+                    target="_blank" rel="noopener">More projects on GitHub →</a></p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <p class="sub">Tools I use.</p>
+            <div class="marquee">
+                <div class="track" id="track"></div>
+            </div>
+            <div class="grid" id="skillGrid"></div>
+        </section>
+
+        <section id="contact">
+            <h2>Let’s talk</h2>
+            <p class="sub">Have a question or an internship opportunity? Send me a message.</p>
+            <form id="cform">
+                <input id="n" name="name" placeholder="Your name" required>
+                <input id="e" name="email" type="email" placeholder="Your email" required>
+                <textarea id="m" name="message" rows="5" placeholder="Your message" required></textarea>
+                <input type="checkbox" name="botcheck" id="bot" style="display:none" tabindex="-1" autocomplete="off">
+                <button class="btn fill" type="submit" id="send">Send message</button>
+                <p id="status" class="sub" style="margin:0"></p>
+            </form>
+            <p class="sub" style="margin-top:18px">Or reach me directly: <a href="tel:+94779509378">+94 77 950 9378</a>
+                · <a href="mailto:dishanthanpavalendran@gmail.com">dishanthanpavalendran@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>© <span id="yr"></span> Pavalendran Dishanthan. All rights reserved.</footer>
+
+    <script>
+        var projects = [
+            { t: "Neuro Player", d: "AI-powered media player", s: "Group", st: "Completed", p: "An offline-first desktop media player with OCR text extraction from video frames, speech-to-text transcripts, automatic subtitles and a Gemini-powered AI assistant.", k: "Electron, React, Tesseract.js, Whisper, Gemini API, FFmpeg", r: "https://github.com/PavalendranDishanthan/neuromediaplayer" },
+            { t: "Voice Notebook", d: "Bilingual voice assistant", s: "Personal", st: "Completed", p: "A voice-controlled notes and task app that understands English and Tamil speech and keeps lists and expense summaries.", k: "React, Node.js, Express, SQLite, Gemini API, Web Speech API", r: "https://github.com/PavalendranDishanthan/voice-notebook" },
+            { t: "Tourist Arrivals Forecasting System", d: "Sri Lanka data warehouse and forecasts", s: "Personal", st: "In progress", p: "A full-stack analytics platform that loads about 130 monthly SLTDA reports into a PostgreSQL warehouse and compares six forecasting models.", k: "Python, pandas, statsmodels, LightGBM, PostgreSQL, FastAPI, React, Docker" },
+            { t: "IoT-Based IV Fluid Monitoring System", d: "Real-time medical monitoring", s: "Group", st: "Completed", p: "A device that tracks IV bottle weight in real time and sends low-level alerts to Firebase, with C++ firmware for stable readings.", k: "ESP32-C3, C++, HX711 ADC, Load Cell, Firebase" },
+            { t: "S Square Studio", d: "Creative portfolio platform", s: "Personal", st: "Completed", p: "A full-stack portfolio website for a video editor, with Supabase authentication, an admin panel and a responsive dark-mode interface.", k: "Next.js, TypeScript, Supabase, Tailwind CSS, Framer Motion", r: "https://github.com/PavalendranDishanthan/studiosquare" }
+        ];
+        var g = document.getElementById("projGrid");
+        projects.forEach(function (x) {
+            var c = document.createElement("div"); c.className = "card proj";
+            c.innerHTML = '<div class="tags"><span class="tag">' + x.s + '</span><span class="tag live">' + x.st + '</span></div><h3>' + x.t + '</h3><small style="color:var(--muted)">' + x.d + '</small><p>' + x.p + '</p><div class="stack">' + x.k + '</div>' + (x.r ? '<a href="' + x.r + '" target="_blank" rel="noopener">View on GitHub →</a>' : '');
+            g.appendChild(c);
+        });
+        var skills = { "Languages": ["💻", "Python, Java, C++, JavaScript, TypeScript"], "Frameworks": ["⚛️", "React, Next.js, Spring Boot, FastAPI, Node.js, Express.js, Tailwind CSS, Framer Motion, Electron"], "Databases": ["🗄️", "MySQL, SQLite, PostgreSQL"], "Cloud & DevOps": ["☁️", "Git, GitHub, Docker, Firebase, Supabase"], "Embedded & IoT": ["🔌", "ESP32, HX711, C++ firmware"] };
+        var sg = document.getElementById("skillGrid"), all = [];
+        Object.keys(skills).forEach(function (k) {
+            var list = skills[k][1].split(", "); all = all.concat(list);
+            var c = document.createElement("div"); c.className = "card skill reveal";
+            c.innerHTML = '<div class="ico">' + skills[k][0] + '</div><h3>' + k.replace("&", "&amp;") + '</h3><div class="chips">' + list.map(function (s) { return '<span class="chip">' + s + '</span>' }).join("") + "</div>";
+            sg.appendChild(c);
+        });
+        document.getElementById("track").innerHTML = all.concat(all).map(function (s) { return "<span>" + s + "</span>" }).join("");
+        document.getElementById("yr").textContent = new Date().getFullYear();
+        var root = document.documentElement;
+        try { var sv = localStorage.getItem("theme"); if (sv) root.setAttribute("data-theme", sv) } catch (e) { }
+        document.getElementById("theme").onclick = function () {
+            var n = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+            root.setAttribute("data-theme", n);
+            try { localStorage.setItem("theme", n) } catch (e) { }
+        };
+        /* CONTACT FORM: get a free access key at https://web3forms.com (enter dishanthanpavalendran@gmail.com) and paste it below */
+        var ACCESS_KEY = "e9b7afd7-d52f-4657-b46a-7b9faa1fe49b";
+        document.getElementById("cform").onsubmit = function (ev) {
+            ev.preventDefault();
+            var n = document.getElementById("n").value, e = document.getElementById("e").value, m = document.getElementById("m").value;
+            var st = document.getElementById("status"), btn = document.getElementById("send");
+            if (ACCESS_KEY.indexOf("YOUR_") === 0) {
+                location.href = "mailto:dishanthanpavalendran@gmail.com?subject=" + encodeURIComponent("Portfolio message from " + n) + "&body=" + encodeURIComponent(m + "\n\nFrom: " + n + " (" + e + ")");
+                return;
+            }
+            btn.disabled = true; st.textContent = "Sending...";
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+                body: JSON.stringify({ access_key: ACCESS_KEY, subject: "Portfolio message from " + n, name: n, email: e, message: m, botcheck: document.getElementById("bot").checked })
+            })
+                .then(function (r) { return r.json() })
+                .then(function (d) {
+                    if (d.success) { st.textContent = "Thank you! Your message has been sent."; document.getElementById("cform").reset() }
+                    else { st.textContent = "Something went wrong. Please email me directly." }
+                    btn.disabled = false;
+                }).catch(function () { st.textContent = "Network error. Please email me directly."; btn.disabled = false });
+        };
+        /* typing effect */
+        var words = ["full-stack web apps", "responsive user interfaces", "AI-powered tools"], wi = 0, ci = 0, del = false, tp = document.getElementById("typed");
+        (function type() {
+            var w = words[wi]; ci += del ? -1 : 1; tp.textContent = w.slice(0, ci);
+            var d = del ? 40 : 80;
+            if (!del && ci === w.length) { del = true; d = 1400 }
+            else if (del && ci === 0) { del = false; wi = (wi + 1) % words.length; d = 400 }
+            setTimeout(type, d);
+        })();
+        /* scroll reveal + progress bar */
+        document.querySelectorAll(".card,.tl div,.hero .txt").forEach(function (el) { el.classList.add("reveal") });
+        var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target) } }) }, { threshold: .12 });
+        document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el) });
+        window.addEventListener("scroll", function () {
+            var h = document.documentElement;
+            document.getElementById("bar").style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+        });
+    </script>
+</body>
+
+</html>
